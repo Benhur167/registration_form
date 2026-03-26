@@ -4,16 +4,9 @@ pipeline {
     environment {
         IMAGE_NAME = "registration_form"
         CONTAINER_NAME = "reg-container"
-        PORT = "3000"
     }
 
     stages {
-
-        stage('Clone Code') {
-            steps {
-                git 'https://github.com/YOUR-USERNAME/YOUR-REPO.git'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
@@ -30,7 +23,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                bat "docker run -d -p %PORT%:3000 --name %CONTAINER_NAME% %IMAGE_NAME%"
+                bat "docker run -d -p 3000:3000 --name %CONTAINER_NAME% %IMAGE_NAME%"
             }
         }
     }
